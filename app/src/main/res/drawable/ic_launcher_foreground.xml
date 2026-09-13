@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Center group inside 66dp safe zone (21..87 in 108 canvas) -->
+    <group
+        android:translateX="26"
+        android:translateY="23"
+        android:scaleX="1.2"
+        android:scaleY="1.2">
+        <!-- Main Document Body Base (Deep Orange facet) -->
+        <path
+            android:fillColor="#C74E00"
+            android:pathData="M12,4 L30,4 L40,14 L40,46 L12,46 Z" />
+
+        <!-- Front Orange Origami Fold (Bright Saffron Orange) -->
+        <path
+            android:fillColor="#E85D04"
+            android:pathData="M12,18 L34,4 L24,46 L12,46 Z" />
+
+        <!-- Deep Blue Base Triangle -->
+        <path
+            android:fillColor="#1D4ED8"
+            android:pathData="M24,46 L40,24 L40,46 Z" />
+
+        <!-- Dynamic Tech Blue Facet -->
+        <path
+            android:fillColor="#2563EB"
+            android:pathData="M12,46 L38,18 L40,36 L24,46 Z" />
+
+        <!-- Cyan/Light Blue Fold Highlight -->
+        <path
+            android:fillColor="#60A5FA"
+            android:pathData="M24,46 L34,34 L40,46 Z" />
+
+        <!-- Top Right Fold Notch (Warm Amber) -->
+        <path
+            android:fillColor="#FF9E00"
+            android:pathData="M30,4 L40,14 L30,14 Z" />
+
+        <!-- Emerald Checkmark Badge in Top Corner -->
+        <path
+            android:fillColor="#059669"
+            android:pathData="M32,10 L35,14 L42,6 L40,4 L35,11 L33,9 Z" />
+    </group>
+</vector>
