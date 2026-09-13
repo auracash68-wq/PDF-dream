@@ -187,59 +187,8 @@ fun HomeScreen(
                 }
             }
 
-            // 2. Search Bar
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 4.dp)
-            ) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = {
-                        viewModel.setToolSearch(it)
-                        if (it.isNotBlank()) {
-                            viewModel.selectTab(AppTab.ALL_TOOLS)
-                        }
-                    },
-                    placeholder = {
-                        Text(
-                            text = "Search PDF tools...",
-                            fontSize = 14.sp,
-                            color = Color(0xFF94A3B8)
-                        )
-                    },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
-                            tint = SweetOrange,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    },
-                    trailingIcon = {
-                        IconButton(onClick = { viewModel.selectTab(AppTab.ALL_TOOLS) }) {
-                            Icon(
-                                imageVector = Icons.Default.Tune,
-                                contentDescription = "Filter",
-                                tint = Color(0xFF64748B),
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
-                    },
-                    singleLine = true,
-                    shape = RoundedCornerShape(14.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White,
-                        focusedBorderColor = SweetOrange,
-                        unfocusedBorderColor = Color(0xFFE2E8F0)
-                    ),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(1.dp, RoundedCornerShape(14.dp))
-                        .testTag("home_search_input")
-                )
-            }
+            // 2. Reserved Empty Space (Search box removed; space preserved for future content)
+            Spacer(modifier = Modifier.height(64.dp))
 
             // 3. Express Workflow Card
             Card(
@@ -292,21 +241,13 @@ fun HomeScreen(
 
                     Spacer(modifier = Modifier.height(14.dp))
 
-                    // Quad buttons: Camera, Merge, Compress, E-Sign
+                    // Quad buttons: (Camera removed - empty space preserved), Merge, Compress, E-Sign
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
-                        ExpressActionTile(
-                            icon = Icons.Default.PhotoCamera,
-                            label = "Camera",
-                            bgColor = SweetOrange,
-                            iconColor = Color.White,
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            val tool = PdfToolRegistry.ALL_TOOLS.find { it.id == "camera_scan" }
-                            if (tool != null) viewModel.openTool(tool)
-                        }
+                        // Empty position where Camera tool was
+                        Spacer(modifier = Modifier.weight(1f))
 
                         ExpressActionTile(
                             icon = Icons.Default.CallMerge,
@@ -624,51 +565,6 @@ fun HomeScreen(
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                 }
-            }
-        }
-
-        // 8. Sticky Quick Scan Floating Action Button
-        Button(
-            onClick = {
-                val tool = PdfToolRegistry.ALL_TOOLS.find { it.id == "camera_scan" }
-                if (tool != null) viewModel.openTool(tool)
-            },
-            colors = ButtonDefaults.buttonColors(containerColor = SweetEmerald),
-            shape = RoundedCornerShape(28.dp),
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 16.dp, bottom = 20.dp)
-                .height(52.dp)
-                .shadow(8.dp, RoundedCornerShape(28.dp))
-                .testTag("home_quick_scan_fab")
-        ) {
-            Icon(
-                imageVector = Icons.Default.AddPhotoAlternate,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(22.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "Quick Scan",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-            Spacer(modifier = Modifier.width(6.dp))
-            Box(
-                modifier = Modifier
-                    .size(20.dp)
-                    .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.25f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowUpward,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(13.dp)
-                )
             }
         }
     }
