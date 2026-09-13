@@ -38,6 +38,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.TextFields
@@ -58,6 +59,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -82,6 +84,9 @@ import com.example.ui.theme.SweetEmerald
 import com.example.ui.theme.SweetEmeraldFixed
 import com.example.ui.theme.SweetOrange
 import com.example.ui.theme.SweetOrangeFixed
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun HomeScreen(
@@ -103,11 +108,11 @@ fun HomeScreen(
                 .verticalScroll(scrollState)
                 .padding(bottom = 80.dp)
         ) {
-            // 1. Top Greeting & Scan Trigger
+            // 1. Top App Title & Top Actions
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                    .padding(start = 16.dp, top = 14.dp, end = 16.dp, bottom = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -116,39 +121,21 @@ fun HomeScreen(
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(44.dp)
+                            .size(42.dp)
                             .clip(RoundedCornerShape(12.dp))
                             .background(SweetOrangeFixed),
                         contentAlignment = Alignment.Center
                     ) {
-                        OrigamiBrandMark(size = 36.dp, showProBadge = false)
+                        OrigamiBrandMark(size = 34.dp, showProBadge = false)
                     }
                     Spacer(modifier = Modifier.width(10.dp))
-                    Column {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                text = "GOOD MORNING",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = Color(0xFF64748B),
-                                letterSpacing = 0.8.sp
-                            )
-                            Spacer(modifier = Modifier.width(5.dp))
-                            Box(
-                                modifier = Modifier
-                                    .size(6.dp)
-                                    .clip(CircleShape)
-                                    .background(SweetEmerald)
-                            )
-                        }
-                        Text(
-                            text = "Alex Rivera",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F172A),
-                            letterSpacing = (-0.3).sp
-                        )
-                    }
+                    Text(
+                        text = "Sweet PDF",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF0F172A),
+                        letterSpacing = (-0.5).sp
+                    )
                 }
 
                 Row(
@@ -216,7 +203,7 @@ fun HomeScreen(
                     },
                     placeholder = {
                         Text(
-                            text = "Search all 65+ PDF tools...",
+                            text = "Search PDF tools...",
                             fontSize = 14.sp,
                             color = Color(0xFF94A3B8)
                         )
@@ -357,7 +344,7 @@ fun HomeScreen(
                 }
             }
 
-            // 4. Browse by Domain Carousel
+            // 4. Category Carousel
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -367,20 +354,13 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 6.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Browse by Domain",
+                        text = "Category",
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF0F172A)
-                    )
-                    Text(
-                        text = "65 utilities",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = SweetBlue
                     )
                 }
 
@@ -391,31 +371,31 @@ fun HomeScreen(
                         .padding(horizontal = 16.dp, vertical = 4.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    DomainPill(title = "Organization", count = "15", isSelected = true) {
+                    DomainPill(title = "Organization", isSelected = true) {
                         viewModel.selectToolCategory(ToolCategory.ORGANIZE)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "Scanner CV", count = "8", isSelected = false) {
+                    DomainPill(title = "Scanner CV", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.SCAN_CV)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "Security", count = "8", isSelected = false) {
+                    DomainPill(title = "Security", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.SECURITY)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "Converters", count = "7", isSelected = false) {
+                    DomainPill(title = "Converters", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.CONVERT)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "Markup & Draw", count = "8", isSelected = false) {
+                    DomainPill(title = "Markup & Draw", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.MARKUP)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "Repair & Forms", count = "10", isSelected = false) {
+                    DomainPill(title = "Repair & Forms", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.FORMS_REPAIR)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
-                    DomainPill(title = "View & Navigate", count = "7", isSelected = false) {
+                    DomainPill(title = "View & Navigate", isSelected = false) {
                         viewModel.selectToolCategory(ToolCategory.VIEWING)
                         viewModel.selectTab(AppTab.ALL_TOOLS)
                     }
@@ -638,10 +618,6 @@ fun HomeScreen(
                     HomeDocumentCard(
                         doc = doc,
                         onView = { viewModel.openViewer(doc) },
-                        onCompress = {
-                            val tool = PdfToolRegistry.ALL_TOOLS.find { it.id == "pdf_compression" }
-                            if (tool != null) viewModel.openTool(tool)
-                        },
                         onShare = {
                             viewModel.showMessage("Sharing ${doc.title} via system share sheet...")
                         }
@@ -739,17 +715,16 @@ private fun ExpressActionTile(
 @Composable
 private fun DomainPill(
     title: String,
-    count: String,
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
+    Box(
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
             .background(if (isSelected) SweetBlue else Color(0xFFEAEDFF))
             .clickable { onClick() }
-            .padding(horizontal = 14.dp, vertical = 7.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = title,
@@ -757,20 +732,6 @@ private fun DomainPill(
             fontWeight = FontWeight.SemiBold,
             color = if (isSelected) Color.White else Color(0xFF1E293B)
         )
-        Spacer(modifier = Modifier.width(6.dp))
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(10.dp))
-                .background(if (isSelected) Color.White.copy(alpha = 0.25f) else Color.White)
-                .padding(horizontal = 5.dp, vertical = 1.dp)
-        ) {
-            Text(
-                text = count,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold,
-                color = if (isSelected) Color.White else SweetOrange
-            )
-        }
     }
 }
 
@@ -782,7 +743,7 @@ private fun PinnedToolCard(
 ) {
     Card(
         modifier = modifier
-            .height(132.dp)
+            .height(116.dp)
             .shadow(1.dp, RoundedCornerShape(14.dp))
             .clickable { onClick() }
             .testTag("pinned_tool_${tool.id}"),
@@ -798,7 +759,7 @@ private fun PinnedToolCard(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 val iconBg = when (tool.id) {
                     "merge" -> SweetOrangeFixed
@@ -839,19 +800,12 @@ private fun PinnedToolCard(
                     )
                 }
 
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(SweetEmeraldFixed)
-                        .padding(horizontal = 6.dp, vertical = 2.dp)
-                ) {
-                    Text(
-                        text = tool.catTag.ifEmpty { "Cat" },
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF064E3B)
-                    )
-                }
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+                    contentDescription = null,
+                    tint = Color(0xFF94A3B8),
+                    modifier = Modifier.size(16.dp)
+                )
             }
 
             Column {
@@ -863,44 +817,14 @@ private fun PinnedToolCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = tool.description,
                     fontSize = 10.sp,
                     color = Color(0xFF64748B),
-                    maxLines = 1,
+                    maxLines = 2,
+                    lineHeight = 14.sp,
                     overflow = TextOverflow.Ellipsis
-                )
-            }
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = when (tool.id) {
-                            "pdf_compression" -> Icons.Default.Tune
-                            "offline_ocr" -> Icons.Default.WifiOff
-                            else -> Icons.Default.Bolt
-                        },
-                        contentDescription = null,
-                        tint = SweetEmerald,
-                        modifier = Modifier.size(12.dp)
-                    )
-                    Spacer(modifier = Modifier.width(3.dp))
-                    Text(
-                        text = tool.actionBadge,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = SweetEmerald
-                    )
-                }
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = null,
-                    tint = Color(0xFF94A3B8),
-                    modifier = Modifier.size(14.dp)
                 )
             }
         }
@@ -911,7 +835,6 @@ private fun PinnedToolCard(
 private fun HomeDocumentCard(
     doc: DocumentEntity,
     onView: () -> Unit,
-    onCompress: () -> Unit,
     onShare: () -> Unit
 ) {
     Card(
@@ -1008,13 +931,16 @@ private fun HomeDocumentCard(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Action ribbon
+            // Action ribbon: View, Share, and actual Date & Time
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Button(
                         onClick = onView,
                         shape = RoundedCornerShape(8.dp),
@@ -1033,23 +959,6 @@ private fun HomeDocumentCard(
                     }
 
                     Button(
-                        onClick = onCompress,
-                        shape = RoundedCornerShape(8.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF1F5F9)),
-                        contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 10.dp, vertical = 4.dp),
-                        modifier = Modifier.height(30.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Compress,
-                            contentDescription = null,
-                            tint = SweetOrange,
-                            modifier = Modifier.size(14.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(text = "Compress", fontSize = 11.sp, color = SweetOrange, fontWeight = FontWeight.SemiBold)
-                    }
-
-                    Button(
                         onClick = onShare,
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF1F5F9)),
@@ -1064,6 +973,33 @@ private fun HomeDocumentCard(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(text = "Share", fontSize = 11.sp, color = Color(0xFF475569), fontWeight = FontWeight.SemiBold)
+                    }
+
+                    // Display actual creation/generated date and time of the PDF instead of Compress action
+                    val formattedDateTime = remember(doc.timestamp) {
+                        val sdf = SimpleDateFormat("MMM d, yyyy • h:mm a", Locale.getDefault())
+                        sdf.format(Date(doc.timestamp))
+                    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(0xFFF1F5F9))
+                            .padding(horizontal = 8.dp, vertical = 5.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Schedule,
+                            contentDescription = null,
+                            tint = Color(0xFF64748B),
+                            modifier = Modifier.size(13.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = formattedDateTime,
+                            fontSize = 11.sp,
+                            color = Color(0xFF64748B),
+                            fontWeight = FontWeight.Medium
+                        )
                     }
                 }
 

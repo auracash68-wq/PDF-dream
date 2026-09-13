@@ -57,7 +57,6 @@ fun WelcomeScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFFCFDFF))
-            .statusBarsPadding()
             .navigationBarsPadding()
     ) {
         // Ambient background color glow layers

@@ -28,7 +28,6 @@ import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Compress
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Share
@@ -156,152 +155,11 @@ fun HistoryScreen(
                 }
             }
 
-            // Storage Impact Dashboard Card
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 4.dp)
-                    .shadow(3.dp, RoundedCornerShape(16.dp))
-                    .testTag("storage_impact_card"),
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(containerColor = Color(0xFF0F172A))
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Box(
-                                modifier = Modifier
-                                    .size(36.dp)
-                                    .clip(RoundedCornerShape(10.dp))
-                                    .background(SweetOrange.copy(alpha = 0.15f)),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Folder,
-                                    contentDescription = null,
-                                    tint = SweetOrange,
-                                    modifier = Modifier.size(20.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.width(10.dp))
-                            Column {
-                                Text(
-                                    text = "Offline Vault Active",
-                                    fontSize = 14.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.White
-                                )
-                                Text(
-                                    text = "Local Sandboxed Storage",
-                                    fontSize = 11.sp,
-                                    color = Color(0xFF94A3B8)
-                                )
-                            }
-                        }
-
-                        // Pulsing Zero-Cloud badge
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Color(0xFF064E3B).copy(alpha = 0.5f))
-                                .padding(horizontal = 8.dp, vertical = 4.dp)
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(6.dp)
-                                    .clip(CircleShape)
-                                    .background(SweetEmerald)
-                            )
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Text(
-                                text = "Zero-Cloud",
-                                fontSize = 10.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = SweetEmerald
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    // 2-Metric Columns
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        // Space Saved
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Color(0xFF1E293B).copy(alpha = 0.6f))
-                                .padding(12.dp)
-                        ) {
-                            Text(
-                                text = "Space Saved",
-                                fontSize = 11.sp,
-                                color = Color(0xFF94A3B8)
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "2.4 GB",
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Black,
-                                color = SweetOrange
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "via Flate & Bicubic downsampling",
-                                fontSize = 9.sp,
-                                color = Color(0xFF64748B),
-                                lineHeight = 12.sp
-                            )
-                        }
-
-                        // On-Device Engine
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Color(0xFF1E293B).copy(alpha = 0.6f))
-                                .padding(12.dp)
-                        ) {
-                            Text(
-                                text = "On-Device Engine",
-                                fontSize = 11.sp,
-                                color = Color(0xFF94A3B8)
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "100%",
-                                fontSize = 20.sp,
-                                fontWeight = FontWeight.Black,
-                                color = SweetEmerald
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "Zero network telemetry",
-                                fontSize = 9.sp,
-                                color = Color(0xFF64748B),
-                                lineHeight = 12.sp
-                            )
-                        }
-                    }
-                }
-            }
-
             // Search Bar & Filter Tabs
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                    .padding(horizontal = 16.dp, vertical = 6.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 OutlinedTextField(
