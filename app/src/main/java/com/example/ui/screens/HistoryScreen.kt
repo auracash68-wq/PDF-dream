@@ -1,5 +1,22 @@
 package com.example.ui.screens
 
+
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.AppBackground
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
+import com.example.ui.theme.DisabledText
+import com.example.ui.theme.Surface
+import com.example.ui.theme.Border
+import com.example.ui.theme.SweetOledBg
+import com.example.ui.theme.SweetOledSurface
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -62,12 +79,14 @@ import androidx.compose.ui.unit.sp
 import com.example.data.model.DocumentEntity
 import com.example.data.model.PdfToolRegistry
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetBlueFixed
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetEmeraldFixed
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+
+
+
+
+
+
+
+
 
 @Composable
 fun HistoryScreen(
@@ -138,7 +157,7 @@ fun HistoryScreen(
                 Button(
                     onClick = { viewModel.toggleBatchMode() },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (isBatchMode) SweetOrangeFixed else Color.White
+                        containerColor = if (isBatchMode) PrimarySoft else Color.White
                     ),
                     shape = RoundedCornerShape(12.dp),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 1.dp),
@@ -150,7 +169,7 @@ fun HistoryScreen(
                         text = if (isBatchMode) "Cancel" else "Select",
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
-                        color = if (isBatchMode) SweetOrange else Color(0xFF1E293B)
+                        color = if (isBatchMode) Primary else Color(0xFF1E293B)
                     )
                 }
             }
@@ -197,7 +216,7 @@ fun HistoryScreen(
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
-                        focusedBorderColor = SweetOrange,
+                        focusedBorderColor = Primary,
                         unfocusedBorderColor = Color(0xFFE2E8F0)
                     ),
                     modifier = Modifier.fillMaxWidth()
@@ -253,7 +272,7 @@ fun HistoryScreen(
                         Icon(
                             imageVector = Icons.Default.Sort,
                             contentDescription = "Sort",
-                            tint = if (isAscending) SweetOrange else Color(0xFF64748B),
+                            tint = if (isAscending) Primary else Color(0xFF64748B),
                             modifier = Modifier.size(18.dp)
                         )
                     }
@@ -334,14 +353,14 @@ fun HistoryScreen(
                         Text(
                             text = "Batch execution ready",
                             fontSize = 10.sp,
-                            color = SweetOrange
+                            color = PrimaryLight
                         )
                     }
 
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Button(
                             onClick = { viewModel.executeBatchMerge(selectedDocsList) },
-                            colors = ButtonDefaults.buttonColors(containerColor = SweetOrange),
+                            colors = ButtonDefaults.buttonColors(containerColor = Primary),
                             shape = RoundedCornerShape(12.dp),
                             modifier = Modifier.height(38.dp)
                         ) {
@@ -357,7 +376,7 @@ fun HistoryScreen(
 
                         Button(
                             onClick = { viewModel.executeBatchCompress(selectedDocsList) },
-                            colors = ButtonDefaults.buttonColors(containerColor = SweetBlue),
+                            colors = ButtonDefaults.buttonColors(containerColor = PrimaryDark),
                             shape = RoundedCornerShape(12.dp),
                             modifier = Modifier.height(38.dp)
                         ) {
@@ -400,7 +419,7 @@ private fun HistoryTabPill(
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
-            .background(if (isSelected) SweetOrange else Color.White)
+            .background(if (isSelected) Primary else Color.White)
             .clickable { onClick() }
             .padding(horizontal = 12.dp, vertical = 6.dp)
     ) {
@@ -408,7 +427,7 @@ private fun HistoryTabPill(
             text = title,
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
-            color = if (isSelected) Color.White else Color(0xFF64748B)
+            color = if (isSelected) Color.White else TextSecondary
         )
     }
 }
@@ -446,7 +465,7 @@ private fun HistoryDocumentRowCard(
                     Checkbox(
                         checked = isSelected,
                         onCheckedChange = { onToggleSelect() },
-                        colors = CheckboxDefaults.colors(checkedColor = SweetOrange),
+                        colors = CheckboxDefaults.colors(checkedColor = Primary),
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -456,7 +475,7 @@ private fun HistoryDocumentRowCard(
                     modifier = Modifier
                         .size(44.dp, 56.dp)
                         .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0xFFF8FAFC))
+                        .background(AppBackground)
                         .padding(4.dp),
                     contentAlignment = Alignment.TopCenter
                 ) {
@@ -470,21 +489,21 @@ private fun HistoryDocumentRowCard(
                                 .fillMaxWidth()
                                 .height(3.dp)
                                 .background(
-                                    if (doc.isEncrypted) SweetBlue else SweetOrange,
+                                    Primary,
                                     RoundedCornerShape(2.dp)
                                 )
                         )
                         Icon(
                             imageVector = if (doc.isEncrypted) Icons.Default.Lock else Icons.Default.Description,
                             contentDescription = null,
-                            tint = if (doc.isEncrypted) SweetBlue else SweetOrange,
+                            tint = Primary,
                             modifier = Modifier.size(20.dp)
                         )
                         Text(
                             text = "${doc.pageCount}P",
                             fontSize = 8.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF64748B)
+                            color = TextSecondary
                         )
                     }
                 }
@@ -500,7 +519,7 @@ private fun HistoryDocumentRowCard(
                             text = doc.title,
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F172A),
+                            color = TextPrimary,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.weight(1f)
@@ -513,7 +532,7 @@ private fun HistoryDocumentRowCard(
                             Icon(
                                 imageVector = if (doc.isStarred) Icons.Default.Star else Icons.Default.StarBorder,
                                 contentDescription = "Star",
-                                tint = if (doc.isStarred) SweetOrange else Color(0xFFCBD5E1),
+                                tint = if (doc.isStarred) Color(0xFFF59E0B) else Color(0xFFCBD5E1),
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -524,7 +543,7 @@ private fun HistoryDocumentRowCard(
                     Text(
                         text = "${doc.pageCount} pages • ${doc.formattedSize} • ${doc.dateString}",
                         fontSize = 11.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
 
                     Spacer(modifier = Modifier.height(6.dp))
@@ -535,19 +554,15 @@ private fun HistoryDocumentRowCard(
                         modifier = Modifier.horizontalScroll(rememberScrollState())
                     ) {
                         doc.getBadges().forEach { badge ->
-                            val badgeColor = when {
-                                badge.contains("Signed", ignoreCase = true) -> SweetBlue
-                                badge.contains("AES", ignoreCase = true) -> SweetEmerald
-                                badge.contains("OCR", ignoreCase = true) -> SweetEmerald
-                                badge.contains("Merged", ignoreCase = true) -> SweetOrange
-                                else -> SweetBlue
+                            val badgeColor = if (badge.contains("AES", ignoreCase = true) || badge.contains("Signed", ignoreCase = true)) {
+                                Success
+                            } else {
+                                Primary
                             }
-                            val badgeBg = when {
-                                badge.contains("Signed", ignoreCase = true) -> SweetBlueFixed
-                                badge.contains("AES", ignoreCase = true) -> SweetEmeraldFixed
-                                badge.contains("OCR", ignoreCase = true) -> SweetEmeraldFixed
-                                badge.contains("Merged", ignoreCase = true) -> SweetOrangeFixed
-                                else -> SweetBlueFixed
+                            val badgeBg = if (badge.contains("AES", ignoreCase = true) || badge.contains("Signed", ignoreCase = true)) {
+                                Color(0xFFDCFCE7)
+                            } else {
+                                PrimarySoft
                             }
 
                             Box(
@@ -578,7 +593,7 @@ private fun HistoryDocumentRowCard(
             ) {
                 Button(
                     onClick = onOpen,
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF1F5F9)),
+                    colors = ButtonDefaults.buttonColors(containerColor = SurfaceSecondary),
                     shape = RoundedCornerShape(8.dp),
                     contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 10.dp, vertical = 4.dp),
                     modifier = Modifier.height(30.dp)
@@ -586,11 +601,11 @@ private fun HistoryDocumentRowCard(
                     Icon(
                         imageVector = Icons.Default.Visibility,
                         contentDescription = null,
-                        tint = SweetBlue,
+                        tint = Primary,
                         modifier = Modifier.size(14.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "Open", fontSize = 11.sp, color = SweetBlue, fontWeight = FontWeight.SemiBold)
+                    Text(text = "Open", fontSize = 11.sp, color = Primary, fontWeight = FontWeight.SemiBold)
                 }
 
                 Spacer(modifier = Modifier.width(6.dp))
@@ -602,7 +617,7 @@ private fun HistoryDocumentRowCard(
                     Icon(
                         imageVector = Icons.Default.Share,
                         contentDescription = "Share",
-                        tint = Color(0xFF64748B),
+                        tint = TextSecondary,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -614,7 +629,7 @@ private fun HistoryDocumentRowCard(
                     Icon(
                         imageVector = Icons.Default.MoreVert,
                         contentDescription = "More",
-                        tint = Color(0xFF64748B),
+                        tint = TextSecondary,
                         modifier = Modifier.size(18.dp)
                     )
                 }

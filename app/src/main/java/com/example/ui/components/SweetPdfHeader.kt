@@ -34,7 +34,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ui.theme.SweetOrange
+import com.example.ui.theme.Primary
 
 @Composable
 fun SweetPdfHeader(
@@ -66,7 +66,7 @@ fun SweetPdfHeader(
                     modifier = Modifier
                         .size(36.dp)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(SweetOrange),
+                        .background(Primary),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -90,7 +90,7 @@ fun SweetPdfHeader(
                         text = "WORKSPACE",
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
-                        color = SweetOrange,
+                        color = Primary,
                         letterSpacing = 1.2.sp
                     )
                 }
@@ -133,7 +133,7 @@ fun SweetPdfHeader(
                     modifier = Modifier
                         .size(32.dp)
                         .clip(CircleShape)
-                        .background(SweetOrange)
+                        .background(Primary)
                         .clickable { onProfileClick() }
                         .testTag("header_avatar_btn"),
                     contentAlignment = Alignment.Center

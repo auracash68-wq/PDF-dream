@@ -60,10 +60,10 @@ import com.example.data.model.DocumentEntity
 import com.example.data.model.PdfTool
 import com.example.data.storage.SelectedFileItem
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Error
 import java.io.File
 import kotlinx.coroutines.launch
 
@@ -363,7 +363,7 @@ fun Category1OrganizeToolScreen(
                             Text(
                                 text = "Please select at least 2 PDF files to merge into one.",
                                 fontSize = 12.sp,
-                                color = SweetOrange,
+                                color = Primary,
                                 fontWeight = FontWeight.Medium
                             )
                         } else {
@@ -384,13 +384,13 @@ fun Category1OrganizeToolScreen(
                                 selected = splitMode == "range",
                                 onClick = { splitMode = "range" },
                                 label = { Text("Custom Ranges") },
-                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                             )
                             FilterChip(
                                 selected = splitMode == "every_n",
                                 onClick = { splitMode = "every_n" },
                                 label = { Text("Every N Pages") },
-                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                             )
                         }
 
@@ -465,7 +465,7 @@ fun Category1OrganizeToolScreen(
                                     },
                                     label = { Text("Page ${p + 1}") },
                                     colors = FilterChipDefaults.filterChipColors(
-                                        selectedContainerColor = if (tool.id == "delete_pages") Color(0xFFFFD5D5) else SweetOrangeFixed
+                                        selectedContainerColor = if (tool.id == "delete_pages") Color(0xFFFFD5D5) else PrimarySoft
                                     )
                                 )
                             }
@@ -530,7 +530,7 @@ fun Category1OrganizeToolScreen(
                                     selected = rotateAngle == deg,
                                     onClick = { rotateAngle = deg },
                                     label = { Text(label) },
-                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                                 )
                             }
                         }
@@ -581,7 +581,7 @@ fun Category1OrganizeToolScreen(
                             value = cropPercent,
                             onValueChange = { cropPercent = it },
                             valueRange = 0.02f..0.30f,
-                            colors = SliderDefaults.colors(thumbColor = SweetOrange, activeTrackColor = SweetOrange)
+                            colors = SliderDefaults.colors(thumbColor = Primary, activeTrackColor = Primary)
                         )
                     }
 
@@ -592,13 +592,13 @@ fun Category1OrganizeToolScreen(
                                 selected = isVerticalHalve,
                                 onClick = { isVerticalHalve = true },
                                 label = { Text("Vertical (Left/Right book cut)") },
-                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                             )
                             FilterChip(
                                 selected = !isVerticalHalve,
                                 onClick = { isVerticalHalve = false },
                                 label = { Text("Horizontal (Top/Bottom)") },
-                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                             )
                         }
                     }
@@ -611,7 +611,7 @@ fun Category1OrganizeToolScreen(
                                     selected = nUpPages == num,
                                     onClick = { nUpPages = num },
                                     label = { Text(label) },
-                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                                 )
                             }
                         }
@@ -662,7 +662,7 @@ fun Category1OrganizeToolScreen(
                             value = marginPoints,
                             onValueChange = { marginPoints = it },
                             valueRange = 10f..100f,
-                            colors = SliderDefaults.colors(thumbColor = SweetOrange, activeTrackColor = SweetOrange)
+                            colors = SliderDefaults.colors(thumbColor = Primary, activeTrackColor = Primary)
                         )
                     }
 
@@ -671,7 +671,7 @@ fun Category1OrganizeToolScreen(
                             Text(
                                 text = "Please select a 2nd PDF file to use as the overlay/underlay layer.",
                                 fontSize = 12.sp,
-                                color = SweetOrange
+                                color = Primary
                             )
                         } else {
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -679,13 +679,13 @@ fun Category1OrganizeToolScreen(
                                     selected = isOverlayMode,
                                     onClick = { isOverlayMode = true },
                                     label = { Text("Overlay (Top Layer)") },
-                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                                 )
                                 FilterChip(
                                     selected = !isOverlayMode,
                                     onClick = { isOverlayMode = false },
                                     label = { Text("Underlay (Background)") },
-                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = SweetOrangeFixed)
+                                    colors = FilterChipDefaults.filterChipColors(selectedContainerColor = PrimarySoft)
                                 )
                             }
                             Text("Layer Opacity: ${(layerOpacity * 100).toInt()}%")

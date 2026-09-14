@@ -119,12 +119,16 @@ import com.example.data.model.PdfTool
 import com.example.data.model.PdfToolRegistry
 import com.example.data.model.ToolCategory
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetBlueFixed
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetEmeraldFixed
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.Border
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
 
 @Composable
 fun AllToolsScreen(
@@ -173,28 +177,28 @@ fun AllToolsScreen(
                             text = "Toolkit Directory",
                             fontSize = 22.sp,
                             fontWeight = FontWeight.ExtraBold,
-                            color = Color(0xFF0F172A),
+                            color = TextPrimary,
                             letterSpacing = (-0.5).sp
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(SweetOrangeFixed)
+                                .background(PrimaryLight)
                                 .padding(horizontal = 8.dp, vertical = 2.dp)
                         ) {
                             Text(
                                 text = "ENGINE v4.2",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = SweetOrange
+                                color = Primary
                             )
                         }
                     }
                     Text(
                         text = "65 on-device high-performance native PDF tools",
                         fontSize = 11.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                 }
 
@@ -203,13 +207,13 @@ fun AllToolsScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .clip(RoundedCornerShape(16.dp))
-                        .background(SweetEmeraldFixed)
+                        .background(PrimarySoft)
                         .padding(horizontal = 10.dp, vertical = 5.dp)
                 ) {
                     Icon(
                         imageVector = Icons.Default.Verified,
                         contentDescription = null,
-                        tint = SweetEmerald,
+                        tint = Primary,
                         modifier = Modifier.size(15.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
@@ -217,7 +221,7 @@ fun AllToolsScreen(
                         text = if (searchQuery.isNotBlank()) "${filteredTools.size} Found" else "65 Tools",
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF064E3B)
+                        color = Primary
                     )
                 }
             }
@@ -247,7 +251,7 @@ fun AllToolsScreen(
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 contentDescription = "Clear",
-                                tint = Color(0xFF64748B),
+                                tint = TextSecondary,
                                 modifier = Modifier.size(18.dp)
                             )
                         }
@@ -258,8 +262,8 @@ fun AllToolsScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = Color(0xFFF8FAFC),
                     unfocusedContainerColor = Color(0xFFF8FAFC),
-                    focusedBorderColor = SweetOrange,
-                    unfocusedBorderColor = Color(0xFFE2E8F0)
+                    focusedBorderColor = Primary,
+                    unfocusedBorderColor = Border
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -275,8 +279,9 @@ fun AllToolsScreen(
             ) {
                 ToolCategory.entries.forEach { cat ->
                     val isSelected = selectedCategory == cat
-                    val pillBg = if (isSelected) Color(cat.themeColor) else Color(cat.chipBgColor)
-                    val textColor = if (isSelected) Color.White else Color(cat.themeColor)
+                    val pillBg = if (isSelected) Color(cat.themeColor) else SurfaceSecondary
+                    val textColor = if (isSelected) Color.White else TextPrimary
+                    val iconColor = if (isSelected) Color.White else Color(cat.themeColor)
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -292,7 +297,7 @@ fun AllToolsScreen(
                         Icon(
                             imageVector = getCategoryIcon(cat),
                             contentDescription = null,
-                            tint = textColor,
+                            tint = iconColor,
                             modifier = Modifier.size(14.dp)
                         )
                         Spacer(modifier = Modifier.width(6.dp))
@@ -320,13 +325,13 @@ fun AllToolsScreen(
                     modifier = Modifier
                         .size(56.dp)
                         .clip(CircleShape)
-                        .background(SweetOrangeFixed),
+                        .background(PrimaryLight),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.ManageSearch,
                         contentDescription = null,
-                        tint = SweetOrange,
+                        tint = Primary,
                         modifier = Modifier.size(30.dp)
                     )
                 }
@@ -335,13 +340,13 @@ fun AllToolsScreen(
                     text = "No matching utility",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1E293B)
+                    color = TextPrimary
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "Try keywords like 'merge', 'sign', 'ocr', 'protect', or 'compress'",
                     fontSize = 12.sp,
-                    color = Color(0xFF64748B),
+                    color = TextSecondary,
                     textAlign = TextAlign.Center
                 )
             }
@@ -375,7 +380,7 @@ fun AllToolsScreen(
                                     modifier = Modifier
                                         .size(28.dp)
                                         .clip(RoundedCornerShape(8.dp))
-                                        .background(Color(cat.themeColor).copy(alpha = 0.12f)),
+                                        .background(Color(cat.chipBgColor)),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(
@@ -390,7 +395,7 @@ fun AllToolsScreen(
                                     text = cat.title,
                                     fontSize = 13.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF0F172A),
+                                    color = TextPrimary,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -398,14 +403,14 @@ fun AllToolsScreen(
                             Box(
                                 modifier = Modifier
                                     .clip(RoundedCornerShape(12.dp))
-                                    .background(Color(cat.chipBgColor))
+                                    .background(SurfaceSecondary)
                                     .padding(horizontal = 8.dp, vertical = 2.dp)
                             ) {
                                 Text(
                                     text = "${toolsInCat.size} Tools",
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(cat.themeColor)
+                                    color = TextSecondary
                                 )
                             }
                         }
@@ -486,7 +491,7 @@ private fun ToolGridCard(
                     text = tool.name,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F172A),
+                    color = TextPrimary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -496,7 +501,7 @@ private fun ToolGridCard(
                 Text(
                     text = tool.description,
                     fontSize = 11.sp,
-                    color = Color(0xFF64748B),
+                    color = TextSecondary,
                     maxLines = 2,
                     lineHeight = 15.sp,
                     overflow = TextOverflow.Ellipsis
@@ -523,13 +528,13 @@ private fun ToolGridCard(
                     modifier = Modifier
                         .size(24.dp)
                         .clip(CircleShape)
-                        .background(SweetEmeraldFixed),
+                        .background(Color(cat.chipBgColor)),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = null,
-                        tint = SweetEmerald,
+                        tint = Color(cat.themeColor),
                         modifier = Modifier.size(13.dp)
                     )
                 }

@@ -16,8 +16,8 @@ enum class ToolCategory(
         title = "1. Page Management & Organization",
         shortName = "Organize",
         countLabel = "15 Tools",
-        themeColor = 0xFFE85D04,
-        chipBgColor = 0xFFFFE8DD,
+        themeColor = 0xFF2563EB,
+        chipBgColor = 0xFFDBEAFE,
         iconName = "auto_stories"
     ),
     VIEWING(
@@ -26,7 +26,7 @@ enum class ToolCategory(
         shortName = "View & Read",
         countLabel = "7 Tools",
         themeColor = 0xFF2563EB,
-        chipBgColor = 0xFFEFF6FF,
+        chipBgColor = 0xFFDBEAFE,
         iconName = "visibility"
     ),
     MARKUP(
@@ -34,8 +34,8 @@ enum class ToolCategory(
         title = "3. Vector Annotation, Markup & Drawing",
         shortName = "Markup",
         countLabel = "8 Tools",
-        themeColor = 0xFFE85D04,
-        chipBgColor = 0xFFFFE8DD,
+        themeColor = 0xFF2563EB,
+        chipBgColor = 0xFFDBEAFE,
         iconName = "draw"
     ),
     SCAN_CV(
@@ -43,8 +43,8 @@ enum class ToolCategory(
         title = "4. On-Device Camera Scanner & CV",
         shortName = "Scan & CV",
         countLabel = "8 Tools",
-        themeColor = 0xFF059669,
-        chipBgColor = 0xFFECFDF5,
+        themeColor = 0xFF7C3AED,
+        chipBgColor = 0xFFEDE9FE,
         iconName = "document_scanner"
     ),
     CONVERT(
@@ -52,8 +52,8 @@ enum class ToolCategory(
         title = "5. Offline Conversion & Generation",
         shortName = "Convert",
         countLabel = "7 Tools",
-        themeColor = 0xFF2563EB,
-        chipBgColor = 0xFFEFF6FF,
+        themeColor = 0xFFD97706,
+        chipBgColor = 0xFFFEF3C7,
         iconName = "transform"
     ),
     SECURITY(
@@ -61,8 +61,8 @@ enum class ToolCategory(
         title = "6. Security, Privacy & Metadata",
         shortName = "Security",
         countLabel = "8 Tools",
-        themeColor = 0xFFE85D04,
-        chipBgColor = 0xFFFFE8DD,
+        themeColor = 0xFF115E59,
+        chipBgColor = 0xFFCCFBF1,
         iconName = "shield_lock"
     ),
     FORMS_REPAIR(
@@ -70,8 +70,8 @@ enum class ToolCategory(
         title = "7. Optimization, Repair & Forms",
         shortName = "Forms & Repair",
         countLabel = "12 Tools",
-        themeColor = 0xFF059669,
-        chipBgColor = 0xFFECFDF5,
+        themeColor = 0xFF0F766E,
+        chipBgColor = 0xFFCCFBF1,
         iconName = "build_circle"
     )
 }

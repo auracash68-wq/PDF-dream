@@ -58,13 +58,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.SweetPdfViewModel
 import com.example.ui.components.OrigamiBrandMark
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetBlueFixed
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetEmeraldFixed
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeDark
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.AppBackground
+import com.example.ui.theme.Border
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
 
 @Composable
 fun SettingsScreen(
@@ -83,7 +86,7 @@ fun SettingsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(AppBackground)
             .verticalScroll(scrollState)
             .padding(bottom = 80.dp)
     ) {
@@ -97,13 +100,13 @@ fun SettingsScreen(
                 text = "Preferences & System",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFF0F172A),
+                color = TextPrimary,
                 letterSpacing = (-0.5).sp
             )
             Text(
                 text = "Configure native document processing engine",
                 fontSize = 11.sp,
-                color = Color(0xFF64748B)
+                color = TextSecondary
             )
         }
 
@@ -124,7 +127,7 @@ fun SettingsScreen(
                     Icon(
                         imageVector = Icons.Default.Palette,
                         contentDescription = null,
-                        tint = SweetOrange,
+                        tint = Primary,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
@@ -132,7 +135,7 @@ fun SettingsScreen(
                         text = "Display & Reading Environment",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF0F172A)
+                        color = TextPrimary
                     )
                 }
 
@@ -141,7 +144,7 @@ fun SettingsScreen(
                     Text(
                         text = "Canvas Background Mode",
                         fontSize = 12.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Row(
@@ -154,7 +157,7 @@ fun SettingsScreen(
                                 modifier = Modifier
                                     .weight(1f)
                                     .clip(RoundedCornerShape(10.dp))
-                                    .background(if (isSel) SweetOrange else Color(0xFFF1F5F9))
+                                    .background(if (isSel) Primary else SurfaceSecondary)
                                     .clickable { viewModel.setCanvasEnvironment(mode) }
                                     .padding(vertical = 8.dp),
                                 contentAlignment = Alignment.Center
@@ -163,7 +166,7 @@ fun SettingsScreen(
                                     text = mode,
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (isSel) Color.White else Color(0xFF475569)
+                                    color = if (isSel) Color.White else TextSecondary
                                 )
                             }
                         }
@@ -175,7 +178,7 @@ fun SettingsScreen(
                     Text(
                         text = "Default Paper Geometry",
                         fontSize = 12.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     Row(
@@ -188,7 +191,7 @@ fun SettingsScreen(
                                 modifier = Modifier
                                     .weight(1f)
                                     .clip(RoundedCornerShape(10.dp))
-                                    .background(if (isSel) SweetBlue else Color(0xFFF1F5F9))
+                                    .background(if (isSel) Primary else SurfaceSecondary)
                                     .clickable { viewModel.setDefaultPaperGeometry(paper) }
                                     .padding(vertical = 8.dp),
                                 contentAlignment = Alignment.Center
@@ -197,7 +200,7 @@ fun SettingsScreen(
                                     text = if (paper == "A4") "A4 (210 × 297 mm)" else "US Letter (8.5 × 11 in)",
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (isSel) Color.White else Color(0xFF475569)
+                                    color = if (isSel) Color.White else TextSecondary
                                 )
                             }
                         }
@@ -223,7 +226,7 @@ fun SettingsScreen(
                     Icon(
                         imageVector = Icons.Default.Tune,
                         contentDescription = null,
-                        tint = SweetEmerald,
+                        tint = Primary,
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(8.dp))
@@ -231,7 +234,7 @@ fun SettingsScreen(
                         text = "Processing Pipeline",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF0F172A)
+                        color = TextPrimary
                     )
                 }
 
@@ -244,7 +247,7 @@ fun SettingsScreen(
                         Text(
                             text = "Compression Profile",
                             fontSize = 12.sp,
-                            color = Color(0xFF64748B)
+                            color = TextSecondary
                         )
                         Text(
                             text = when (compressionLevel) {
@@ -254,7 +257,7 @@ fun SettingsScreen(
                             },
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
-                            color = SweetOrange
+                            color = Primary
                         )
                     }
                     Slider(
@@ -263,8 +266,9 @@ fun SettingsScreen(
                         valueRange = 1f..3f,
                         steps = 1,
                         colors = SliderDefaults.colors(
-                            thumbColor = SweetOrange,
-                            activeTrackColor = SweetOrange
+                            thumbColor = Primary,
+                            activeTrackColor = Primary,
+                            inactiveTrackColor = SurfaceSecondary
                         )
                     )
                 }
@@ -280,18 +284,23 @@ fun SettingsScreen(
                             text = "Hardware Camera Deskew",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                         Text(
                             text = "Automatic quadrilateral planar perspective unwarping",
                             fontSize = 11.sp,
-                            color = Color(0xFF64748B)
+                            color = TextSecondary
                         )
                     }
                     Switch(
                         checked = cameraDeskew,
                         onCheckedChange = { viewModel.toggleCameraDeskew() },
-                        colors = SwitchDefaults.colors(checkedThumbColor = SweetEmerald, checkedTrackColor = SweetEmeraldFixed)
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            checkedTrackColor = Primary,
+                            uncheckedThumbColor = Color.White,
+                            uncheckedTrackColor = Border
+                        )
                     )
                 }
 
@@ -306,18 +315,23 @@ fun SettingsScreen(
                             text = "Auto-Flatten AcroForms",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                         Text(
                             text = "Bake interactive form fields permanently into vector paths",
                             fontSize = 11.sp,
-                            color = Color(0xFF64748B)
+                            color = TextSecondary
                         )
                     }
                     Switch(
                         checked = autoFlatten,
                         onCheckedChange = { viewModel.toggleAutoFlatten() },
-                        colors = SwitchDefaults.colors(checkedThumbColor = SweetOrange, checkedTrackColor = SweetOrangeFixed)
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            checkedTrackColor = Primary,
+                            uncheckedThumbColor = Color.White,
+                            uncheckedTrackColor = Border
+                        )
                     )
                 }
 
@@ -332,18 +346,23 @@ fun SettingsScreen(
                             text = "Biometric Vault Shield",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                         Text(
                             text = "Require fingerprint or device PIN for AES-256 access",
                             fontSize = 11.sp,
-                            color = Color(0xFF64748B)
+                            color = TextSecondary
                         )
                     }
                     Switch(
                         checked = biometricShield,
                         onCheckedChange = { viewModel.toggleBiometricShield() },
-                        colors = SwitchDefaults.colors(checkedThumbColor = SweetBlue, checkedTrackColor = SweetBlueFixed)
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = Color.White,
+                            checkedTrackColor = Primary,
+                            uncheckedThumbColor = Color.White,
+                            uncheckedTrackColor = Border
+                        )
                     )
                 }
             }
@@ -371,7 +390,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.CleaningServices,
                             contentDescription = null,
-                            tint = Color(0xFF64748B),
+                            tint = TextSecondary,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -380,12 +399,12 @@ fun SettingsScreen(
                                 text = "Cached Object Trees",
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0F172A)
+                                color = TextPrimary
                             )
                             Text(
                                 text = "Temporary render scratchpads",
                                 fontSize = 11.sp,
-                                color = Color(0xFF64748B)
+                                color = TextSecondary
                             )
                         }
                     }
@@ -393,14 +412,14 @@ fun SettingsScreen(
                     Button(
                         onClick = { viewModel.clearCache() },
                         shape = RoundedCornerShape(10.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF1F5F9)),
+                        colors = ButtonDefaults.buttonColors(containerColor = SurfaceSecondary),
                         modifier = Modifier.height(36.dp)
                     ) {
                         Text(
                             text = cacheSizeLabel,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
-                            color = SweetOrange
+                            color = Primary
                         )
                     }
                 }
@@ -417,7 +436,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.Info,
                             contentDescription = null,
-                            tint = SweetBlue,
+                            tint = Primary,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -425,13 +444,13 @@ fun SettingsScreen(
                             text = "View Welcome & Feature Tour",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = SweetBlue
+                            color = Primary
                         )
                     }
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = null,
-                        tint = Color(0xFF94A3B8),
+                        tint = TextTertiary,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -466,7 +485,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.PrivacyTip,
                             contentDescription = "Privacy Policy",
-                            tint = SweetEmerald,
+                            tint = Primary,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -474,13 +493,13 @@ fun SettingsScreen(
                             text = "Privacy Policy",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                     }
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = null,
-                        tint = Color(0xFF94A3B8),
+                        tint = TextTertiary,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -489,7 +508,7 @@ fun SettingsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(1.dp)
-                        .background(Color(0xFFF1F5F9))
+                        .background(SurfaceSecondary)
                 )
 
                 // 2. About
@@ -506,7 +525,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.Info,
                             contentDescription = "About",
-                            tint = SweetBlue,
+                            tint = Primary,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -514,13 +533,13 @@ fun SettingsScreen(
                             text = "About",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                     }
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = null,
-                        tint = Color(0xFF94A3B8),
+                        tint = TextTertiary,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -529,7 +548,7 @@ fun SettingsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(1.dp)
-                        .background(Color(0xFFF1F5F9))
+                        .background(SurfaceSecondary)
                 )
 
                 // 3. Customer Support
@@ -546,7 +565,7 @@ fun SettingsScreen(
                         Icon(
                             imageVector = Icons.Default.ContactSupport,
                             contentDescription = "Customer Support",
-                            tint = SweetOrange,
+                            tint = Primary,
                             modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
@@ -554,13 +573,13 @@ fun SettingsScreen(
                             text = "Customer Support",
                             fontSize = 13.sp,
                             fontWeight = FontWeight.SemiBold,
-                            color = Color(0xFF0F172A)
+                            color = TextPrimary
                         )
                     }
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                         contentDescription = null,
-                        tint = Color(0xFF94A3B8),
+                        tint = TextTertiary,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -579,13 +598,13 @@ fun SettingsScreen(
                 text = "Sweet PDF • v2.4.0 (Build 4209)",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF64748B)
+                color = TextSecondary
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
                 text = "100% Offline • Zero Telemetry • ISO 19005 Standard",
                 fontSize = 10.sp,
-                color = Color(0xFF94A3B8)
+                color = TextTertiary
             )
         }
     }

@@ -1,8 +1,27 @@
 package com.example.ui.dialogs
-
 import android.graphics.Bitmap
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
+import androidx.compose.ui.graphics.asImageBitmap
+
+
+
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.AppBackground
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
+import com.example.ui.theme.DisabledText
+import com.example.ui.theme.Surface
+import com.example.ui.theme.Border
+import com.example.ui.theme.SweetOledBg
+import com.example.ui.theme.SweetOledSurface
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -67,10 +86,9 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.data.model.DocumentEntity
 import com.example.ui.SweetPdfViewModel
 import com.example.ui.screens.tools.shareFile
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+
+
+
 import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -123,7 +141,7 @@ fun PdfViewerDialog(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(if (isNightReading) Color(0xFF0B0F19) else Color(0xFF1E293B))
+                .background(if (isNightReading) SweetOledBg else TextPrimary)
                 .testTag("pdf_viewer_dialog")
         ) {
             Column(
@@ -134,7 +152,7 @@ fun PdfViewerDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp)
-                        .background(if (isNightReading) Color(0xFF0F172A) else Color(0xFF0F172A))
+                        .background(if (isNightReading) TextPrimary else TextPrimary)
                         .padding(horizontal = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -163,7 +181,7 @@ fun PdfViewerDialog(
                             Text(
                                 text = "Page $currentPage of $totalPages • ${doc.formattedSize}",
                                 fontSize = 10.sp,
-                                color = Color(0xFF94A3B8)
+                                color = DisabledText
                             )
                         }
                     }
@@ -173,7 +191,7 @@ fun PdfViewerDialog(
                             Icon(
                                 imageVector = if (isNightReading) Icons.Default.LightMode else Icons.Default.DarkMode,
                                 contentDescription = "Night Mode",
-                                tint = if (isNightReading) SweetOrange else Color.White
+                                tint = if (isNightReading) PrimaryLight else Color.White
                             )
                         }
 
@@ -209,7 +227,7 @@ fun PdfViewerDialog(
                                 .shadow(16.dp, RoundedCornerShape(8.dp)),
                             shape = RoundedCornerShape(8.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = if (isNightReading) Color(0xFF131B2E) else Color.White
+                                containerColor = if (isNightReading) SweetOledSurface else Color.White
                             )
                         ) {
                             Image(
@@ -228,7 +246,7 @@ fun PdfViewerDialog(
                                 .shadow(16.dp, RoundedCornerShape(8.dp)),
                             shape = RoundedCornerShape(8.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = if (isNightReading) Color(0xFF131B2E) else Color.White
+                                containerColor = if (isNightReading) SweetOledSurface else Color.White
                             )
                         ) {
                             Column(
@@ -248,14 +266,14 @@ fun PdfViewerDialog(
                                             text = "SWEET PDF NATIVE ENGINE",
                                             fontSize = 8.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = if (isNightReading) Color(0xFF64748B) else Color(0xFF94A3B8),
+                                            color = if (isNightReading) TextTertiary else DisabledText,
                                             letterSpacing = 1.sp
                                         )
                                         Text(
                                             text = "PAGE $currentPage OF $totalPages",
                                             fontSize = 8.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = if (isNightReading) Color(0xFF64748B) else Color(0xFF94A3B8)
+                                            color = if (isNightReading) TextTertiary else DisabledText
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(4.dp))
@@ -263,7 +281,7 @@ fun PdfViewerDialog(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .height(2.dp)
-                                            .background(SweetBlue)
+                                            .background(Primary)
                                     )
                                 }
 
@@ -278,7 +296,7 @@ fun PdfViewerDialog(
                                         text = doc.title.removeSuffix(".pdf"),
                                         fontSize = 17.sp,
                                         fontWeight = FontWeight.Bold,
-                                        color = SweetOrange,
+                                        color = Primary,
                                         letterSpacing = (-0.3).sp
                                     )
 
@@ -286,7 +304,7 @@ fun PdfViewerDialog(
                                         text = if (doc.isEncrypted) "Security Profile: AES-256 Bit Encrypted • Verified Signature"
                                         else "Profile: Lossless Vector Output • On-Device Sandboxed",
                                         fontSize = 10.sp,
-                                        color = if (isNightReading) Color(0xFF94A3B8) else Color(0xFF64748B)
+                                        color = if (isNightReading) DisabledText else TextTertiary
                                     )
 
                                     Spacer(modifier = Modifier.height(6.dp))
@@ -295,7 +313,7 @@ fun PdfViewerDialog(
                                         text = doc.contentSnippet ?: "Document content verified and structured by Sweet PDF Skia Engine. Fully readable without external font substitutes.",
                                         fontSize = 11.sp,
                                         lineHeight = 16.sp,
-                                        color = if (isNightReading) Color(0xFFE2E8F0) else Color(0xFF1E293B)
+                                        color = if (isNightReading) Border else TextPrimary
                                     )
 
                                     Spacer(modifier = Modifier.height(10.dp))
@@ -305,16 +323,16 @@ fun PdfViewerDialog(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .clip(RoundedCornerShape(8.dp))
-                                            .background(if (isNightReading) Color(0xFF1E293B) else Color(0xFFF8FAFC))
+                                            .background(if (isNightReading) TextPrimary else AppBackground)
                                             .padding(10.dp)
-                                    ) {
+                                        ) {
                                         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                                             doc.getBadges().forEach { badge ->
                                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                                     Icon(
                                                         imageVector = Icons.Default.Verified,
                                                         contentDescription = null,
-                                                        tint = SweetEmerald,
+                                                        tint = Success,
                                                         modifier = Modifier.size(12.dp)
                                                     )
                                                     Spacer(modifier = Modifier.width(6.dp))
@@ -322,7 +340,7 @@ fun PdfViewerDialog(
                                                         text = badge,
                                                         fontSize = 10.sp,
                                                         fontWeight = FontWeight.SemiBold,
-                                                        color = if (isNightReading) Color(0xFFCBD5E1) else Color(0xFF334155)
+                                                        color = if (isNightReading) Border else TextSecondary
                                                     )
                                                 }
                                             }
@@ -336,7 +354,7 @@ fun PdfViewerDialog(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .height(1.dp)
-                                            .background(Color(0xFFCBD5E1))
+                                            .background(Border)
                                     )
                                     Spacer(modifier = Modifier.height(6.dp))
                                     Row(
@@ -346,12 +364,12 @@ fun PdfViewerDialog(
                                         Text(
                                             text = "Generated by Sweet PDF • 100% Private Offline",
                                             fontSize = 8.sp,
-                                            color = if (isNightReading) Color(0xFF64748B) else Color(0xFF94A3B8)
+                                            color = if (isNightReading) TextTertiary else DisabledText
                                         )
                                         Text(
                                             text = doc.dateString,
                                             fontSize = 8.sp,
-                                            color = if (isNightReading) Color(0xFF64748B) else Color(0xFF94A3B8)
+                                            color = if (isNightReading) TextTertiary else DisabledText
                                         )
                                     }
                                 }
@@ -365,7 +383,7 @@ fun PdfViewerDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp)
-                        .background(Color(0xFF0F172A))
+                        .background(TextPrimary)
                         .padding(horizontal = 20.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
@@ -377,7 +395,7 @@ fun PdfViewerDialog(
                         Icon(
                             imageVector = Icons.Default.ChevronLeft,
                             contentDescription = "Previous Page",
-                            tint = if (currentPage > 1) Color.White else Color(0xFF475569)
+                            tint = if (currentPage > 1) Color.White else TextSecondary
                         )
                     }
 
@@ -395,7 +413,7 @@ fun PdfViewerDialog(
                         Icon(
                             imageVector = Icons.Default.ChevronRight,
                             contentDescription = "Next Page",
-                            tint = if (currentPage < totalPages) Color.White else Color(0xFF475569)
+                            tint = if (currentPage < totalPages) Color.White else TextSecondary
                         )
                     }
                 }

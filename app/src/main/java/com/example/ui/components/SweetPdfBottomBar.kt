@@ -32,10 +32,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.AppTab
 
-private val BottomBarLightGreenBg = Color(0xFFE8F5E9) // Subtle, professional light green shade
-private val BottomBarTopDivider = Color(0xFFC8E6C9)
-private val BottomBarSelectedColor = Color(0xFFC74E00) // High-contrast orange
-private val BottomBarUnselectedColor = Color(0xFF475569) // High-contrast slate
+import com.example.ui.theme.Border
+import com.example.ui.theme.Primary
+import com.example.ui.theme.Surface
+import com.example.ui.theme.TextSecondary
+
+private val BottomBarBg = Surface // #FFFFFF
+private val BottomBarTopDivider = Border // #E2E8F0
+private val BottomBarSelectedColor = Primary // #1E40AF
+private val BottomBarUnselectedColor = TextSecondary // #64748B
 
 @Composable
 fun SweetPdfBottomBar(
@@ -46,7 +51,7 @@ fun SweetPdfBottomBar(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(8.dp)
-            .background(BottomBarLightGreenBg)
+            .background(BottomBarBg)
             .navigationBarsPadding()
     ) {
         Box(

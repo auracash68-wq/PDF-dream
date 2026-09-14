@@ -1,5 +1,22 @@
 package com.example.ui.dialogs
 
+
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.AppBackground
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
+import com.example.ui.theme.DisabledText
+import com.example.ui.theme.Surface
+import com.example.ui.theme.Border
+import com.example.ui.theme.SweetOledBg
+import com.example.ui.theme.SweetOledSurface
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -73,12 +90,14 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.data.model.DocumentEntity
 import com.example.data.model.PdfTool
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetBlueFixed
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetEmeraldFixed
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+
+
+
+
+
+
+
+
 
 @Composable
 fun ToolExecutionDialog(
@@ -117,13 +136,13 @@ fun ToolExecutionDialog(
                             modifier = Modifier
                                 .size(40.dp)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(Color(tool.category.chipBgColor)),
+                                .background(PrimarySoft),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Bolt,
                                 contentDescription = null,
-                                tint = Color(tool.category.themeColor),
+                                tint = Primary,
                                 modifier = Modifier.size(22.dp)
                             )
                         }
@@ -133,13 +152,13 @@ fun ToolExecutionDialog(
                                 text = tool.name,
                                 fontSize = 16.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0F172A)
+                                color = TextPrimary
                             )
                             Text(
                                 text = tool.actionBadge.uppercase(),
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = Color(tool.category.themeColor)
+                                color = Primary
                             )
                         }
                     }
@@ -151,7 +170,7 @@ fun ToolExecutionDialog(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = "Close",
-                            tint = Color(0xFF64748B)
+                            tint = TextSecondary
                         )
                     }
                 }
@@ -183,7 +202,7 @@ private fun MergeToolView(
         Text(
             text = "Select documents to combine into a unified file:",
             fontSize = 12.sp,
-            color = Color(0xFF64748B)
+            color = TextSecondary
         )
 
         LazyColumn(
@@ -191,7 +210,7 @@ private fun MergeToolView(
                 .fillMaxWidth()
                 .height(140.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFFF8FAFC))
+                .background(AppBackground)
                 .padding(6.dp)
         ) {
             items(documents) { doc ->
@@ -216,7 +235,7 @@ private fun MergeToolView(
                             onCheckedChange = {
                                 if (isSelected) selectedDocs.remove(doc) else selectedDocs.add(doc)
                             },
-                            colors = CheckboxDefaults.colors(checkedColor = SweetOrange),
+                            colors = CheckboxDefaults.colors(checkedColor = Primary),
                             modifier = Modifier.size(20.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -232,7 +251,7 @@ private fun MergeToolView(
                         text = "${doc.pageCount}p",
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                 }
             }
@@ -254,7 +273,7 @@ private fun MergeToolView(
                 }
             },
             enabled = selectedDocs.isNotEmpty(),
-            colors = ButtonDefaults.buttonColors(containerColor = SweetOrange),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -287,7 +306,7 @@ private fun CameraScanToolView(
                 .fillMaxWidth()
                 .height(150.dp)
                 .clip(RoundedCornerShape(14.dp))
-                .background(Color(0xFF0F172A)),
+                .background(TextPrimary),
             contentAlignment = Alignment.Center
         ) {
             // Corner Reticles
@@ -295,13 +314,13 @@ private fun CameraScanToolView(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp)
-                    .border(1.dp, SweetEmerald, RoundedCornerShape(8.dp))
+                    .border(1.dp, PrimaryLight, RoundedCornerShape(8.dp))
             )
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(
                     imageVector = Icons.Default.DocumentScanner,
                     contentDescription = null,
-                    tint = SweetEmerald,
+                    tint = PrimaryLight,
                     modifier = Modifier.size(36.dp)
                 )
                 Spacer(modifier = Modifier.height(6.dp))
@@ -309,7 +328,7 @@ private fun CameraScanToolView(
                     text = "QUAD EDGE PERSPECTIVE LOCKED",
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
-                    color = SweetEmerald,
+                    color = PrimaryLight,
                     letterSpacing = 1.sp
                 )
             }
@@ -325,7 +344,7 @@ private fun CameraScanToolView(
                     modifier = Modifier
                         .weight(1f)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(if (isSel) SweetEmerald else Color(0xFFF1F5F9))
+                        .background(if (isSel) Primary else SurfaceSecondary)
                         .clickable { filterMode = filter }
                         .padding(vertical = 6.dp),
                     contentAlignment = Alignment.Center
@@ -334,7 +353,7 @@ private fun CameraScanToolView(
                         text = filter.split(" ").first(),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
-                        color = if (isSel) Color.White else Color(0xFF475569)
+                        color = if (isSel) Color.White else TextSecondary
                     )
                 }
             }
@@ -351,7 +370,7 @@ private fun CameraScanToolView(
 
         Button(
             onClick = { viewModel.executeScan(scanName, filterMode) },
-            colors = ButtonDefaults.buttonColors(containerColor = SweetEmerald),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -382,7 +401,7 @@ private fun CompressToolView(
         Text(
             text = "Choose target file to downsample:",
             fontSize = 12.sp,
-            color = Color(0xFF64748B)
+            color = TextSecondary
         )
 
         LazyColumn(
@@ -390,7 +409,7 @@ private fun CompressToolView(
                 .fillMaxWidth()
                 .height(110.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFFF8FAFC))
+                .background(AppBackground)
                 .padding(6.dp)
         ) {
             items(documents) { doc ->
@@ -399,7 +418,7 @@ private fun CompressToolView(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(8.dp))
-                        .background(if (isSel) SweetOrangeFixed else Color.Transparent)
+                        .background(if (isSel) PrimarySoft else Color.Transparent)
                         .clickable { selectedDoc = doc }
                         .padding(horizontal = 8.dp, vertical = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -409,7 +428,7 @@ private fun CompressToolView(
                         text = doc.title,
                         fontSize = 12.sp,
                         fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
-                        color = if (isSel) SweetOrange else Color(0xFF0F172A),
+                        color = if (isSel) Primary else TextPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f)
@@ -417,7 +436,7 @@ private fun CompressToolView(
                     Text(
                         text = doc.formattedSize,
                         fontSize = 11.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                 }
             }
@@ -433,7 +452,7 @@ private fun CompressToolView(
                     modifier = Modifier
                         .weight(1f)
                         .clip(RoundedCornerShape(10.dp))
-                        .background(if (isSel) SweetOrange else Color(0xFFF1F5F9))
+                        .background(if (isSel) Primary else SurfaceSecondary)
                         .clickable { dpiRatio = opt }
                         .padding(vertical = 8.dp),
                     contentAlignment = Alignment.Center
@@ -442,7 +461,7 @@ private fun CompressToolView(
                         text = opt,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
-                        color = if (isSel) Color.White else Color(0xFF475569)
+                        color = if (isSel) Color.White else TextSecondary
                     )
                 }
             }
@@ -455,7 +474,7 @@ private fun CompressToolView(
                 }
             },
             enabled = selectedDoc != null,
-            colors = ButtonDefaults.buttonColors(containerColor = SweetOrange),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -481,7 +500,7 @@ private fun PasswordProtectToolView(
         Text(
             text = "Select document to lock with AES-256 bit encryption:",
             fontSize = 12.sp,
-            color = Color(0xFF64748B)
+            color = TextSecondary
         )
 
         LazyColumn(
@@ -489,7 +508,7 @@ private fun PasswordProtectToolView(
                 .fillMaxWidth()
                 .height(100.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFFF8FAFC))
+                .background(AppBackground)
                 .padding(6.dp)
         ) {
             items(documents) { doc ->
@@ -498,7 +517,7 @@ private fun PasswordProtectToolView(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(8.dp))
-                        .background(if (isSel) SweetBlueFixed else Color.Transparent)
+                        .background(if (isSel) PrimarySoft else Color.Transparent)
                         .clickable { selectedDoc = doc }
                         .padding(horizontal = 8.dp, vertical = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -507,7 +526,7 @@ private fun PasswordProtectToolView(
                         text = doc.title,
                         fontSize = 12.sp,
                         fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
-                        color = if (isSel) SweetBlue else Color(0xFF0F172A),
+                        color = if (isSel) Primary else TextPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -531,7 +550,7 @@ private fun PasswordProtectToolView(
                 }
             },
             enabled = selectedDoc != null && password.isNotBlank(),
-            colors = ButtonDefaults.buttonColors(containerColor = SweetBlue),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -563,13 +582,13 @@ private fun SignatureToolView(
             Text(
                 text = "Draw handwritten signature:",
                 fontSize = 12.sp,
-                color = Color(0xFF64748B)
+                color = TextSecondary
             )
             Text(
                 text = "Clear Pad",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = SweetOrange,
+                color = Primary,
                 modifier = Modifier.clickable { points.clear() }
             )
         }
@@ -580,8 +599,8 @@ private fun SignatureToolView(
                 .fillMaxWidth()
                 .height(130.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .border(1.dp, Color(0xFFCBD5E1), RoundedCornerShape(12.dp))
-                .background(Color(0xFFFCFDFF))
+                .border(1.dp, Border, RoundedCornerShape(12.dp))
+                .background(Surface)
                 .pointerInput(Unit) {
                     detectDragGestures { change, _ ->
                         change.consume()
@@ -598,7 +617,7 @@ private fun SignatureToolView(
                     }
                     drawPath(
                         path = path,
-                        color = Color(0xFF1E3A8A),
+                        color = PrimaryDark,
                         style = Stroke(width = 4f, cap = StrokeCap.Round, join = StrokeJoin.Round)
                     )
                 }
@@ -608,7 +627,7 @@ private fun SignatureToolView(
                 Text(
                     text = "✍ Sign here with finger or stylus",
                     fontSize = 12.sp,
-                    color = Color(0xFF94A3B8),
+                    color = DisabledText,
                     modifier = Modifier.align(Alignment.Center)
                 )
             }
@@ -630,7 +649,7 @@ private fun SignatureToolView(
                 }
             },
             enabled = selectedDoc != null && signerName.isNotBlank(),
-            colors = ButtonDefaults.buttonColors(containerColor = SweetEmerald),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -679,7 +698,7 @@ private fun TextToPdfToolView(
 
         Button(
             onClick = { viewModel.executeTextToPdf(title, textContent) },
-            colors = ButtonDefaults.buttonColors(containerColor = SweetBlue),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
@@ -705,14 +724,14 @@ private fun GenericToolRunnerView(
         Text(
             text = tool.description,
             fontSize = 12.sp,
-            color = Color(0xFF64748B)
+            color = TextSecondary
         )
 
         Text(
             text = "Select target document:",
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F172A)
+            color = TextPrimary
         )
 
         LazyColumn(
@@ -720,7 +739,7 @@ private fun GenericToolRunnerView(
                 .fillMaxWidth()
                 .height(120.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .background(Color(0xFFF8FAFC))
+                .background(AppBackground)
                 .padding(6.dp)
         ) {
             items(documents) { doc ->
@@ -729,7 +748,7 @@ private fun GenericToolRunnerView(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(8.dp))
-                        .background(if (isSel) Color(tool.category.chipBgColor) else Color.Transparent)
+                        .background(if (isSel) PrimarySoft else Color.Transparent)
                         .clickable { selectedDoc = doc }
                         .padding(horizontal = 8.dp, vertical = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -738,14 +757,14 @@ private fun GenericToolRunnerView(
                         text = doc.title,
                         fontSize = 12.sp,
                         fontWeight = if (isSel) FontWeight.Bold else FontWeight.Medium,
-                        color = if (isSel) Color(tool.category.themeColor) else Color(0xFF0F172A),
+                        color = if (isSel) Primary else TextPrimary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
                     Text(
                         text = "${doc.pageCount}p",
                         fontSize = 10.sp,
-                        color = Color(0xFF64748B)
+                        color = TextSecondary
                     )
                 }
             }
@@ -755,28 +774,28 @@ private fun GenericToolRunnerView(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color(0xFFF1F5F9))
+                .background(SurfaceSecondary)
                 .padding(10.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.Verified,
                     contentDescription = null,
-                    tint = SweetEmerald,
+                    tint = Primary,
                     modifier = Modifier.size(16.dp)
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = "Engine profile: Hardware Accelerated Vector Execution",
                     fontSize = 11.sp,
-                    color = Color(0xFF475569)
+                    color = TextSecondary
                 )
             }
         }
 
         Button(
             onClick = { viewModel.executeGenericTool(tool, selectedDoc) },
-            colors = ButtonDefaults.buttonColors(containerColor = Color(tool.category.themeColor)),
+            colors = ButtonDefaults.buttonColors(containerColor = Primary),
             shape = RoundedCornerShape(12.dp),
             modifier = Modifier
                 .fillMaxWidth()

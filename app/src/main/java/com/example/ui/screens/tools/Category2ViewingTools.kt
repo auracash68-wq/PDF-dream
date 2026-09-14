@@ -73,10 +73,10 @@ import com.example.data.model.PdfTool
 import com.example.data.storage.SelectedFileItem
 import com.example.domain.BookmarkItem
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
 import java.io.File
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
@@ -316,7 +316,7 @@ fun Category2ViewingToolScreen(
                                 text = "Matches (${searchResults.size}):",
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.SemiBold,
-                                color = SweetBlue
+                                color = Primary
                             )
                             searchResults.forEach { (pageNum, snippet) ->
                                 Card(
@@ -345,7 +345,7 @@ fun Category2ViewingToolScreen(
                                     shape = RoundedCornerShape(8.dp)
                                 ) {
                                     Column(modifier = Modifier.padding(10.dp)) {
-                                        Text("Page $pageNum", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = SweetOrange)
+                                        Text("Page $pageNum", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Primary)
                                         Text(snippet, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface)
                                     }
                                 }
@@ -384,7 +384,7 @@ fun Category2ViewingToolScreen(
                                     }
                                 }
                             ) {
-                                Icon(Icons.Default.Add, contentDescription = "Add Bookmark", tint = SweetBlue)
+                                Icon(Icons.Default.Add, contentDescription = "Add Bookmark", tint = Primary)
                             }
                         }
 
@@ -401,7 +401,7 @@ fun Category2ViewingToolScreen(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
-                                        Icon(Icons.Default.Bookmark, contentDescription = null, tint = SweetOrange, modifier = Modifier.size(16.dp))
+                                        Icon(Icons.Default.Bookmark, contentDescription = null, tint = Primary, modifier = Modifier.size(16.dp))
                                         Spacer(modifier = Modifier.width(6.dp))
                                         Text("${bm.title} (Page ${bm.pageNumber})", fontSize = 13.sp)
                                     }
@@ -448,7 +448,7 @@ fun Category2ViewingToolScreen(
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Text(bm.title, fontSize = 13.sp, fontWeight = FontWeight.Medium)
-                                    Text("p. ${bm.pageNumber}", fontSize = 12.sp, color = SweetBlue)
+                                    Text("p. ${bm.pageNumber}", fontSize = 12.sp, color = Primary)
                                 }
                             }
                         }
@@ -491,7 +491,7 @@ fun Category2ViewingToolScreen(
                                     isSpeaking = true
                                 },
                                 modifier = Modifier.weight(1f),
-                                colors = ButtonDefaults.buttonColors(containerColor = SweetBlue)
+                                colors = ButtonDefaults.buttonColors(containerColor = Primary)
                             ) {
                                 Icon(Icons.Default.PlayArrow, contentDescription = null)
                                 Spacer(modifier = Modifier.width(4.dp))

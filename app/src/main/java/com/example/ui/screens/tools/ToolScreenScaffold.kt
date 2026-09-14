@@ -75,10 +75,14 @@ import com.example.data.model.DocumentEntity
 import com.example.data.model.PdfTool
 import com.example.data.storage.SelectedFileItem
 import com.example.ui.SweetPdfViewModel
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.Border
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
 import java.io.File
 import kotlinx.coroutines.launch
 
@@ -244,14 +248,14 @@ fun ToolScreenScaffold(
                             Text(
                                 text = "100% On-Device • Sandboxed & Private",
                                 fontSize = 11.sp,
-                                color = SweetEmerald
+                                color = TextSecondary
                             )
                         }
                     }
 
                     if (selectedFiles.isNotEmpty() && resultDoc == null) {
                         TextButton(onClick = onReset) {
-                            Text("Reset", color = SweetOrange, fontSize = 13.sp)
+                            Text("Reset", color = Primary, fontSize = 13.sp)
                         }
                     }
                 }
@@ -281,7 +285,7 @@ fun ToolScreenScaffold(
                         Box(
                             modifier = Modifier
                                 .size(36.dp)
-                                .background(Color(tool.category.themeColor).copy(alpha = 0.15f), CircleShape),
+                                .background(Color(tool.category.chipBgColor), CircleShape),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
@@ -375,13 +379,13 @@ fun ToolScreenScaffold(
                                         text = progressMessage,
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.Medium,
-                                        color = SweetOrange
+                                        color = Primary
                                     )
                                     Text(
                                         text = "${(progress * 100).toInt()}%",
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.Bold,
-                                        color = SweetOrange
+                                        color = Primary
                                     )
                                 }
                                 LinearProgressIndicator(
@@ -390,8 +394,8 @@ fun ToolScreenScaffold(
                                         .fillMaxWidth()
                                         .height(8.dp)
                                         .clip(RoundedCornerShape(4.dp)),
-                                    color = SweetOrange,
-                                    trackColor = SweetOrangeFixed.copy(alpha = 0.3f)
+                                    color = Primary,
+                                    trackColor = PrimaryLight
                                 )
                             }
                         } else {
@@ -404,7 +408,7 @@ fun ToolScreenScaffold(
                                     .testTag("tool_execute_button"),
                                 shape = RoundedCornerShape(14.dp),
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(tool.category.themeColor),
+                                    containerColor = Primary,
                                     disabledContainerColor = Color.Gray.copy(alpha = 0.3f)
                                 )
                             ) {
@@ -441,10 +445,10 @@ fun FileSelectionCard(
             .testTag("select_file_card"),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = SweetOrangeFixed.copy(alpha = 0.2f)
+            containerColor = PrimarySoft
         ),
         border = CardDefaults.outlinedCardBorder().copy(
-            brush = androidx.compose.ui.graphics.SolidColor(SweetOrange.copy(alpha = 0.4f))
+            brush = androidx.compose.ui.graphics.SolidColor(PrimaryLight)
         )
     ) {
         Column(
@@ -457,13 +461,13 @@ fun FileSelectionCard(
             Box(
                 modifier = Modifier
                     .size(64.dp)
-                    .background(SweetOrange.copy(alpha = 0.15f), CircleShape),
+                    .background(PrimaryLight, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.UploadFile,
                     contentDescription = "Select File",
-                    tint = SweetOrange,
+                    tint = Primary,
                     modifier = Modifier.size(36.dp)
                 )
             }
@@ -484,7 +488,7 @@ fun FileSelectionCard(
             Button(
                 onClick = onPickFiles,
                 shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = SweetOrange)
+                colors = ButtonDefaults.buttonColors(containerColor = Primary)
             ) {
                 Text("Browse Storage", fontWeight = FontWeight.SemiBold)
             }
@@ -514,7 +518,7 @@ fun SelectedFilesList(
             )
             if (isMultiSelect) {
                 TextButton(onClick = onAddMore) {
-                    Text("+ Add Another File", color = SweetBlue, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Text("+ Add Another File", color = Primary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }
@@ -540,13 +544,13 @@ fun SelectedFilesList(
                         Box(
                             modifier = Modifier
                                 .size(40.dp)
-                                .background(SweetOrange.copy(alpha = 0.15f), RoundedCornerShape(8.dp)),
+                                .background(PrimarySoft, RoundedCornerShape(8.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
                                 imageVector = Icons.Default.PictureAsPdf,
                                 contentDescription = null,
-                                tint = SweetOrange,
+                                tint = Primary,
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -639,10 +643,10 @@ fun ResultDocumentCard(
             .testTag("result_document_card"),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = SweetEmerald.copy(alpha = 0.1f)
+            containerColor = Success.copy(alpha = 0.08f)
         ),
         border = CardDefaults.outlinedCardBorder().copy(
-            brush = androidx.compose.ui.graphics.SolidColor(SweetEmerald.copy(alpha = 0.5f))
+            brush = androidx.compose.ui.graphics.SolidColor(Success.copy(alpha = 0.35f))
         )
     ) {
         Column(
@@ -655,13 +659,13 @@ fun ResultDocumentCard(
             Box(
                 modifier = Modifier
                     .size(56.dp)
-                    .background(SweetEmerald.copy(alpha = 0.2f), CircleShape),
+                    .background(Success.copy(alpha = 0.15f), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = Icons.Default.CheckCircle,
                     contentDescription = "Success",
-                    tint = SweetEmerald,
+                    tint = Success,
                     modifier = Modifier.size(36.dp)
                 )
             }
@@ -698,7 +702,7 @@ fun ResultDocumentCard(
                         text = "Added to History",
                         fontSize = 11.sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = SweetEmerald
+                        color = Success
                     )
                 }
             }
@@ -711,7 +715,7 @@ fun ResultDocumentCard(
                     onClick = onOpen,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = SweetBlue)
+                    colors = ButtonDefaults.buttonColors(containerColor = Primary)
                 ) {
                     Icon(imageVector = Icons.Default.Visibility, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(6.dp))
@@ -722,7 +726,7 @@ fun ResultDocumentCard(
                     onClick = onShare,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = SweetOrange)
+                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryDark)
                 ) {
                     Icon(imageVector = Icons.Default.Share, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(6.dp))
@@ -733,7 +737,9 @@ fun ResultDocumentCard(
             OutlinedButton(
                 onClick = onExport,
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = Primary),
+                border = androidx.compose.foundation.BorderStroke(1.dp, Primary)
             ) {
                 Icon(imageVector = Icons.Default.CloudDownload, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(8.dp))

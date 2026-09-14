@@ -43,10 +43,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ui.components.OrigamiBrandMark
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeFixed
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.PrimarySoft
+import com.example.ui.theme.Success
+import com.example.ui.theme.AppBackground
+import com.example.ui.theme.SurfaceSecondary
+import com.example.ui.theme.TextPrimary
+import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.TextTertiary
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -56,7 +62,7 @@ fun WelcomeScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFCFDFF))
+            .background(AppBackground)
             .navigationBarsPadding()
     ) {
         // Ambient background color glow layers
@@ -65,21 +71,21 @@ fun WelcomeScreen(
                 .size(240.dp)
                 .align(Alignment.TopStart)
                 .blur(80.dp)
-                .background(SweetOrangeFixed.copy(alpha = 0.45f), CircleShape)
+                .background(PrimaryLight.copy(alpha = 0.35f), CircleShape)
         )
         Box(
             modifier = Modifier
                 .size(260.dp)
                 .align(Alignment.CenterEnd)
                 .blur(90.dp)
-                .background(SweetBlue.copy(alpha = 0.15f), CircleShape)
+                .background(Primary.copy(alpha = 0.12f), CircleShape)
         )
         Box(
             modifier = Modifier
                 .size(220.dp)
                 .align(Alignment.BottomCenter)
                 .blur(80.dp)
-                .background(SweetEmerald.copy(alpha = 0.18f), CircleShape)
+                .background(PrimarySoft.copy(alpha = 0.4f), CircleShape)
         )
 
         Column(
@@ -93,7 +99,7 @@ fun WelcomeScreen(
             Row(
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
-                    .background(Color(0xFFF1F5F9))
+                    .background(SurfaceSecondary)
                     .padding(horizontal = 14.dp, vertical = 6.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
@@ -102,14 +108,14 @@ fun WelcomeScreen(
                     modifier = Modifier
                         .size(8.dp)
                         .clip(CircleShape)
-                        .background(SweetEmerald)
+                        .background(Success)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "FAST • SECURE • LOCAL",
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF475569),
+                    color = TextSecondary,
                     letterSpacing = 1.1.sp
                 )
             }
@@ -136,14 +142,14 @@ fun WelcomeScreen(
                         text = "Sweet ",
                         fontSize = 34.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = Color(0xFF0F172A),
+                        color = TextPrimary,
                         letterSpacing = (-0.8).sp
                     )
                     Text(
                         text = "PDF",
                         fontSize = 34.sp,
                         fontWeight = FontWeight.ExtraBold,
-                        color = SweetOrange,
+                        color = Primary,
                         letterSpacing = (-0.8).sp
                     )
                 }
@@ -154,7 +160,7 @@ fun WelcomeScreen(
                     text = "The Complete 65+ Tool Offline PDF Powerhouse",
                     fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = SweetBlue,
+                    color = Primary,
                     textAlign = TextAlign.Center,
                     lineHeight = 22.sp,
                     modifier = Modifier.padding(horizontal = 16.dp)
@@ -165,7 +171,7 @@ fun WelcomeScreen(
                 Text(
                     text = "Crafted for precision document engineering on mobile, without cloud latency or subscription friction.",
                     fontSize = 13.sp,
-                    color = Color(0xFF64748B),
+                    color = TextTertiary,
                     textAlign = TextAlign.Center,
                     lineHeight = 19.sp,
                     modifier = Modifier.padding(horizontal = 20.dp)
@@ -179,12 +185,12 @@ fun WelcomeScreen(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    WelcomeFeaturePill(icon = Icons.Default.VerifiedUser, label = "100% Offline & Private", iconColor = SweetEmerald)
+                    WelcomeFeaturePill(icon = Icons.Default.VerifiedUser, label = "100% Offline & Private", iconColor = Success)
                     Spacer(modifier = Modifier.width(6.dp))
-                    WelcomeFeaturePill(icon = Icons.Default.ViewInAr, label = "Lossless Vector Engine", iconColor = SweetOrange)
+                    WelcomeFeaturePill(icon = Icons.Default.ViewInAr, label = "Lossless Vector Engine", iconColor = Primary)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-                WelcomeFeaturePill(icon = Icons.Default.AllInclusive, label = "Zero Size Limits", iconColor = SweetBlue)
+                WelcomeFeaturePill(icon = Icons.Default.AllInclusive, label = "Zero Size Limits", iconColor = Primary)
             }
 
             // Action Deck
@@ -201,7 +207,7 @@ fun WelcomeScreen(
                         .height(52.dp)
                         .testTag("get_started_btn"),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = SweetEmerald)
+                    colors = ButtonDefaults.buttonColors(containerColor = Primary)
                 ) {
                     Text(
                         text = "Get Started",
@@ -226,7 +232,7 @@ fun WelcomeScreen(
                         text = "Restore purchase or import files",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = SweetBlue
+                        color = Primary
                     )
                 }
 
@@ -238,13 +244,13 @@ fun WelcomeScreen(
                         modifier = Modifier
                             .size(6.dp)
                             .clip(CircleShape)
-                            .background(SweetEmerald)
+                            .background(Success)
                     )
                     Spacer(modifier = Modifier.width(6.dp))
                     Text(
                         text = "v2.4.0 • Enterprise Ready",
                         fontSize = 11.sp,
-                        color = Color(0xFF94A3B8),
+                        color = TextTertiary,
                         fontWeight = FontWeight.Medium
                     )
                 }
@@ -263,7 +269,7 @@ private fun WelcomeFeaturePill(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFFF1F5F9))
+            .background(SurfaceSecondary)
             .padding(horizontal = 12.dp, vertical = 6.dp)
     ) {
         Icon(
@@ -277,7 +283,7 @@ private fun WelcomeFeaturePill(
             text = label,
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
-            color = Color(0xFF1E293B)
+            color = TextPrimary
         )
     }
 }

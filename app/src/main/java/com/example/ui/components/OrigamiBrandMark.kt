@@ -20,11 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ui.theme.SweetBlue
-import com.example.ui.theme.SweetBlueDark
-import com.example.ui.theme.SweetEmerald
-import com.example.ui.theme.SweetOrange
-import com.example.ui.theme.SweetOrangeDark
+import com.example.ui.theme.Primary
+import com.example.ui.theme.PrimaryDark
+import com.example.ui.theme.PrimaryLight
+import com.example.ui.theme.Success
 
 @Composable
 fun OrigamiBrandMark(
@@ -50,7 +49,7 @@ fun OrigamiBrandMark(
                 val w = this.size.width
                 val h = this.size.height
 
-                // Main Orange Body Base (Faceted fold)
+                // Main Body Base (Faceted fold)
                 val basePath = Path().apply {
                     moveTo(w * 0.20f, h * 0.08f)
                     lineTo(w * 0.65f, h * 0.08f)
@@ -59,28 +58,28 @@ fun OrigamiBrandMark(
                     lineTo(w * 0.20f, h * 0.85f)
                     close()
                 }
-                drawPath(basePath, SweetOrangeDark)
+                drawPath(basePath, PrimaryDark)
 
-                // Top-Left Front Orange Origami Fold
-                val orangeFold = Path().apply {
+                // Top-Left Front Origami Fold
+                val frontFold = Path().apply {
                     moveTo(w * 0.20f, h * 0.32f)
                     lineTo(w * 0.70f, h * 0.08f)
                     lineTo(w * 0.50f, h * 0.85f)
                     lineTo(w * 0.20f, h * 0.85f)
                     close()
                 }
-                drawPath(orangeFold, SweetOrange)
+                drawPath(frontFold, Primary)
 
-                // Deep Tech Blue Fold
+                // Deep Royal Blue Fold
                 val blueFold1 = Path().apply {
                     moveTo(w * 0.50f, h * 0.85f)
                     lineTo(w * 0.88f, h * 0.45f)
                     lineTo(w * 0.88f, h * 0.85f)
                     close()
                 }
-                drawPath(blueFold1, SweetBlueDark)
+                drawPath(blueFold1, PrimaryDark)
 
-                // Dynamic Front Tech Blue Facet
+                // Dynamic Front Blue Facet
                 val blueFold2 = Path().apply {
                     moveTo(w * 0.20f, h * 0.85f)
                     lineTo(w * 0.82f, h * 0.35f)
@@ -88,7 +87,7 @@ fun OrigamiBrandMark(
                     lineTo(w * 0.50f, h * 0.85f)
                     close()
                 }
-                drawPath(blueFold2, SweetBlue)
+                drawPath(blueFold2, Color(0xFF2563EB))
 
                 // Top Right Fold Notch
                 val notchPath = Path().apply {
@@ -97,9 +96,9 @@ fun OrigamiBrandMark(
                     lineTo(w * 0.65f, h * 0.28f)
                     close()
                 }
-                drawPath(notchPath, Color(0xFFFF9E00))
+                drawPath(notchPath, PrimaryLight)
 
-                // Emerald Green Checkmark Badge inside fold
+                // White Checkmark Badge inside fold
                 val checkPath = Path().apply {
                     moveTo(w * 0.68f, h * 0.20f)
                     lineTo(w * 0.74f, h * 0.27f)
@@ -109,7 +108,7 @@ fun OrigamiBrandMark(
                     lineTo(w * 0.70f, h * 0.18f)
                     close()
                 }
-                drawPath(checkPath, SweetEmerald)
+                drawPath(checkPath, Color.White)
             }
         }
 
@@ -119,11 +118,11 @@ fun OrigamiBrandMark(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .shadow(4.dp, RoundedCornerShape(12.dp))
-                    .background(SweetEmerald, RoundedCornerShape(12.dp))
+                    .background(Primary, RoundedCornerShape(12.dp))
                     .padding(horizontal = 7.dp, vertical = 2.dp)
             ) {
                 Text(
-                    text = "✓ PRO",
+                    text = "PRO",
                     color = Color.White,
                     fontSize = 9.sp,
                     fontWeight = FontWeight.Bold
